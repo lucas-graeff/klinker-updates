@@ -10,9 +10,8 @@ import android.preference.PreferenceManager;
 import android.telephony.ServiceState;
 import android.telephony.TelephonyManager;
 import android.telephony.cdma.CdmaCellLocation;
+import android.util.Log;
 import android.widget.Toast;
-
-import com.klinker.android.logger.Log;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;

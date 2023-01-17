@@ -17,9 +17,9 @@ import android.os.PowerManager;
 import android.provider.Telephony;
 import android.telephony.SmsManager;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.android.mms.MmsConfig;
-import com.klinker.android.logger.Log;
 import com.klinker.android.send_message.BroadcastUtils;
 import com.klinker.android.send_message.MmsReceivedReceiver;
 import com.klinker.android.send_message.SmsManagerFactory;
@@ -46,7 +46,6 @@ public class DownloadManager {
 
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void downloadMultimediaMessage(final Context context, final String location, Uri uri, boolean byPush, int subscriptionId) {
         if (location == null || mMap.get(location) != null) {
             return;
@@ -73,7 +72,7 @@ public class DownloadManager {
         download.putExtra(MmsReceivedReceiver.EXTRA_URI, uri);
         download.putExtra(MmsReceivedReceiver.SUBSCRIPTION_ID, subscriptionId);
         final PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                context, 0, download, PendingIntent.FLAG_CANCEL_CURRENT);
+                context, 0, download, PendingIntent.FLAG_IMMUTABLE);
 
         final SmsManager smsManager = SmsManagerFactory.createSmsManager(subscriptionId);
 
